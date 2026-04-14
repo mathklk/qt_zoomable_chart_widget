@@ -31,8 +31,14 @@ public:
 
     void addToolWidget(QWidget *widget);
 
+signals:
+    void resized(QSize const&);
+
 public slots:
     void setSeriesVisible(QAbstractSeries *series, bool visible = true);
+
+protected slots:
+    void resizeEvent(QResizeEvent* event) override;
 
 private slots:
     void on_comboBoxZoomMode_activated(int index);

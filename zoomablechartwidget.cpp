@@ -160,6 +160,11 @@ void ZoomableChartWidget::setSeriesVisible(QAbstractSeries *series, bool visible
     }
 }
 
+void ZoomableChartWidget::resizeEvent(QResizeEvent* event) {
+    QWidget::resizeEvent(event);
+    emit resized(event->size());
+}
+
 void ZoomableChartWidget::seriesAdded(QAbstractSeries *series)
 {
     // Connect all markers to handler
