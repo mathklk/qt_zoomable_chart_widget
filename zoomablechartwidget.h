@@ -47,6 +47,7 @@ private slots:
     void seriesAdded(QAbstractSeries *series);
     void seriesRemoved(QAbstractSeries *series);
     void on_toolButtonFitInView_clicked();
+    void on_pushButtonSave_clicked();
 
 private:
     Ui::ZoomableChartWidget *ui;

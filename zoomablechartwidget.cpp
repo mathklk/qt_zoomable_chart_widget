@@ -3,6 +3,8 @@
 
 #include <QtCharts/QLegendMarker>
 #include <QDebug>
+#include <QFileDialog>
+#include <QPdfWriter>
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 QT_CHARTS_USE_NAMESPACE
@@ -251,3 +253,20 @@ void ZoomableChartWidget::on_toolButtonFitInView_clicked()
         }
     }
 }
+
+void ZoomableChartWidget::on_pushButtonSave_clicked() {
+    QString fileName = QFileDialog::getSaveFileName(this, "Export PDF", "");
+    if (fileName.isEmpty()) {
+        return;
+    }
+
+    if (!fileName.endsWith(".pdf", Qt::CaseInsensitive)) {
+        fileName += ".pdf";
+    }
+
+    QPdfWriter writer(fileName);
+    QPainter painter(&writer);
+    ui->chartView->render(&painter);
+    painter.end();
+}
+
